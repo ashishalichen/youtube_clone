@@ -12,7 +12,7 @@ function Header() {
 
 
     return (
-        <div className='flex grid-flow-col p-3 m-2 shadow-lg items-center justify-between '>
+        <div className='flex grid-flow-col p-3 m-2 shadow-lg items-center justify-between'>
             <div className='flex col-span-2'>
                 <img
                     onClick={() => toggleMenuHandler()}
