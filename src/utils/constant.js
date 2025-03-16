@@ -4,7 +4,7 @@ export const YOUTUBE_VIDEO_API = 'https://youtube.googleapis.com/youtube/v3/vide
 
 export const YOUTUBE_SEARCH_API = "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
 
-// https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=iphone&key=AIzaSyDtd0TWXh6IPcg2WxyYcWGWRfTMgVmMQV0
+export const YOUTUBE_KEYWORD_SEARCH_API = 'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&key=' + YOUTUBE_API_KEY + '&q='
 
 export const COMMENTS = [
     {

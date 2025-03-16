@@ -1,6 +1,7 @@
 import React from 'react'
 
 function VideoCard({ info }) {
+    // console.log(info)
 
     const { snippet, statistics } = info
     const { title, channelTitle } = snippet
@@ -9,7 +10,7 @@ function VideoCard({ info }) {
             <img className='rounded-lg' src={snippet.thumbnails.medium.url} alt={title} />
             <h1 className='py - 1 font-bold'>{title.length > 50 ? title.substring(0, 45) + '...' : title}</h1>
             <h2 className='text-wrap'>{channelTitle}</h2>
-            <h4>{statistics.viewCount} views</h4>
+            <h4>{statistics?.viewCount} views</h4>
         </div>
     )
 }

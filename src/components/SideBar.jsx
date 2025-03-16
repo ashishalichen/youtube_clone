@@ -1,12 +1,15 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { contentKeyword } from "../utils/videoContentSlice";
 
 function SideBar() {
     const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
 
     const contentOne = ["Home", "Shorts", "Subscription", "Live"];
     const contentTwo = ["Music", "Sports", "Gaming", "Movies"];
+
+    const dispatch = useDispatch()
 
     return (
         isMenuOpen && (
@@ -16,6 +19,7 @@ function SideBar() {
                     <h1
                         key={index}
                         className="font-bold bg-gray-100 hover:bg-gray-200 transform transition duration-300 p-1 m-1 rounded-md cursor-pointer"
+                        onClick={() => (item == 'Home' ? dispatch(contentKeyword()) : '')}
                     >
                         <Link to='/'>{item}</Link>
                     </h1>

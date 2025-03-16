@@ -4,26 +4,22 @@ import { YOUTUBE_VIDEO_API } from '../utils/constant'
 import VideoCard from './VideoCard'
 
 import { Link } from 'react-router-dom'
+import useVideoContent from '../hooks/useVideoContent'
+import { useSelector } from 'react-redux'
 
 function VideoContainer() {
 
-    const [videos, setVideos] = useState([])
 
-    useEffect(() => {
-        getVideos()
-    }, [])
+    const videos = useVideoContent()
 
-    async function getVideos() {
-        const data = await fetch(YOUTUBE_VIDEO_API)
-        const json = await data.json()
-        setVideos(json.items)
-    }
+
+    const query = useSelector(store => store.videoContent.searchKeyword)
 
     return (
         <div className='flex flex-wrap justify-evenly'>
             {
-                videos.map(video =>
-                    <Link key={video.id} to={'/watch?v=' + video.id} >
+                videos.length > 0 && videos.map(video =>
+                    <Link key={video.id?.videoId || video.id} to={'/watch?v=' + video.id?.videoId} >
                         <VideoCard info={video} />
                     </Link>)
             }

@@ -2,15 +2,28 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleMenu } from '../utils/appSlice'
 import useSearchSuggestions from '../hooks/useSearchSuggestions'
+import useVideoContent from '../hooks/useVideoContent'
+import { contentKeyword } from '../utils/videoContentSlice';
 
 function Header() {
     const dispatch = useDispatch()
     const [searchQuery, setSearchQuery] = useState('')
     const searchSuggestions = useSearchSuggestions(searchQuery)
     const [showSuggestions, setShowSuggestions] = useState(false)
+    const [searchSuggestionSelected, setSearchSuggestionSelected] = useState('')
+
+    console.log(searchSuggestionSelected)
+    useVideoContent(searchSuggestionSelected)
+
 
     function toggleMenuHandler() {
         dispatch(toggleMenu())
+    }
+
+    function handleSelectedSuggestions(suggestions) {
+        dispatch(contentKeyword(suggestions))
+        setSearchQuery('')
+
     }
 
     return (
@@ -37,7 +50,7 @@ function Header() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onFocus={() => setShowSuggestions(true)}
-                    onBlur={() => setShowSuggestions(false)}
+                    onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
                     placeholder="Search" />
                 <button className='border border-gray-400 p-2 rounded-r-full bg-gray-200 px-4 text-lg'>🔍</button>
 
@@ -46,7 +59,10 @@ function Header() {
                     <div className='absolute top-full left-0 w-full bg-white border border-gray-300 shadow-lg rounded-md mt-1 z-10'>
                         <ul className='p-2'>
                             {searchSuggestions.map((item, index) => (
-                                <li key={index} className='p-2 hover:bg-gray-100 cursor-pointer'>
+                                <li key={index} className='p-2 hover:bg-gray-100 cursor-pointer' onClick={() => {
+                                    handleSelectedSuggestions(item)
+
+                                }}>
                                     {item}
                                 </li>
                             ))}
@@ -67,3 +83,4 @@ function Header() {
 }
 
 export default Header
+
