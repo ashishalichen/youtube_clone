@@ -14,7 +14,7 @@ function MainContainer() {
     }, [])
 
     return (
-        <div>
+        <div className='z-0'>
             <ButtonList />
             <VideoContainer />
         </div>

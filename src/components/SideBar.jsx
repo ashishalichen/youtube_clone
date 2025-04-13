@@ -13,7 +13,7 @@ function SideBar() {
 
     return (
         isMenuOpen && (
-            <div className="shadow-lg p-4 w-48">
+            <div className="shadow-lg p-4 w-48 z-10">
                 {/* First List */}
                 {contentOne.map((item, index) => (
                     <h1
